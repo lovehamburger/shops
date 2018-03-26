@@ -15,6 +15,6 @@ class UserEvent extends BaseEvent {
      * 校验员工昵称
      */
     public function _checkLogin($nickName){
-        echo "4444";
+        echo "444411";
     }
 }
