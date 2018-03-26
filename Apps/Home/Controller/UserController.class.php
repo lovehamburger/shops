@@ -28,7 +28,7 @@ class UserController extends BaseController {
 		$userName = trim(I('post.username'));
 		$passWord = trim(I('post.password'));
 		$verifyCode = trim(I('post.verify_code'));
-
+        D('Home/Ads')->getAds();
 		A('Home/User','Event')->_checkLogin();
 	}
 }
