@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <title>
+                陈龙辉
+            </title>
+            <meta content="Dashboard" name="description"></meta>
+            <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+            <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+            <meta content="text/html; charset=utf-8" http-equiv="Content-Type"></meta>
+            <!--Basic Styles-->
+            <link href="__CSS__/bootstrap.css" rel="stylesheet"></link>
+            <link href="__CSS__/font-awesome.css" rel="stylesheet"></link>
+            <link href="__CSS__/weather-icons.css" rel="stylesheet"></link>
+            <!--Beyond styles-->
+            <link href="__CSS__/beyond.css" id="beyond-link" rel="stylesheet" type="text/css"></link>
+            <link href="__CSS__/demo.css" rel="stylesheet"></link>
+            <link href="__CSS__/typicons.css" rel="stylesheet"></link>
+            <link href="__CSS__/animate.css" rel="stylesheet"></link>
+            <link href="__LAYJS__/skin/layui.css" rel="stylesheet"></link>
+            <link rel="stylesheet" href="__LAYPAGE__/laypage.css" />
+        </meta>
+    </head>
+    <body>
+        <!-- 头部 -->
+        <include file='Common/header'/>
+        <!-- /头部 -->
+        <div class="main-container container-fluid">
+            <div class="page-container">
+                <include file='Common/left'/>
+                <!-- /Page Sidebar -->
+                <!-- Page Content -->
+                <div class="page-content">
+                    <!-- Page levelcrumb -->
+                    <div class="page-breadcrumbs">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="#">
+                                    会员
+                                </a>
+                            </li>
+                            <li class="active">
+                                会员等级
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /Page levelcrumb -->
+                    <!-- Page Body -->
+                    <div class="page-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12 col-xs-12">
+                                <div class="widget">
+                                <input type="hidden" id=levelId value="{$levelRes.id}">
+                                    <div class="widget-header bordered-bottom bordered-blue">
+                                        <span class="widget-caption">
+                                        <if condition='$publishInfo'>
+                                            {$publishInfo}
+                                        <else/>
+                                            新增会员等级
+                                        </if>
+                                        </span>
+                                    </div>
+                                    <div class="widget-body">
+                                        <div id="horizontal-form">
+                                            <div class="form-horizontal" method="post" role="form">
+                                                <div class="form-group row">
+                                                    <label class="col-md-2 control-label no-padding-right" for="level_name">
+                                                        等级名称:
+                                                    </label>
+                                                    <div class="col-sm-6">
+                                                        <input class="form-control" id="level_name" name="level_name" value="{$levelRes.level_name}" placeholder="等级名称" type="text">
+                                                        </input>
+                                                    </div>
+                                                    <p class="help-block col-sm-4 red">
+                                                        * 必填
+                                                    </p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label no-padding-right" for="points_min">
+                                                        等级下限:
+                                                    </label>
+                                                    <div class="col-sm-6">
+                                                        <input class="form-control" id="points_min" name="points_min" placeholder="等级下限" value="{$levelRes.points_min}" required="" type="text">
+                                                        </input>
+                                                    </div>
+                                                    <p class="help-block col-sm-4 red">
+                                                        * 必填
+                                                    </p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label no-padding-right" for="points_max">
+                                                        等级上限:
+                                                    </label>
+                                                    <div class="col-sm-6">
+                                                        <input class="form-control" id="points_max" name="points_max" value='{$levelRes.points_max}' placeholder="等级上限"  type="text">
+                                                        </input>
+                                                    </div>
+                                                    <p class="help-block col-sm-4 red">
+                                                        * 必填
+                                                    </p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label no-padding-right" for="rate">
+                                                        折扣率:
+                                                    </label>
+                                                    <div class="col-sm-6">
+                                                        <input class="form-control" id="rate" name="rate" value='{$levelRes.rate}' placeholder="品牌折扣率"  type="text">
+                                                        </input>
+                                                    </div>
+                                                    <p class="help-block col-sm-4 red">
+                                                        * 必填
+                                                    </p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-2 col-sm-10">
+                                                        <button class="btn btn-default sub_btn member">
+                                                            保存信息
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Page Body -->
+                </div>
+                <!-- /Page Content -->
+            </div>
+        </div>
+        <!--Basic Scripts-->
+        <script src="__JS__/jquery_002.js"></script>
+        <script src="__JS__/bootstrap.js"></script>
+        <script src="__JS__/jquery.js"></script>
+        <!--Beyond Scripts-->
+        <script src="__JS__/beyond.js"></script>
+        <script src="__JS__/member/addLevel.js"></script>
+        <script src="__LAYJS__/layer.js"></script>
+    </body>
+</html>

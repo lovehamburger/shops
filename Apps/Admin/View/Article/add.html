@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <title>
+                陈龙辉
+            </title>
+            <meta content="Dashboard" name="description"></meta>
+            <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+            <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+            <meta content="text/html; charset=utf-8" http-equiv="Content-Type"></meta>
+            <!--Basic Styles-->
+            <link href="__CSS__/bootstrap.css" rel="stylesheet"></link>
+            <link href="__CSS__/font-awesome.css" rel="stylesheet"></link>
+            <link href="__CSS__/weather-icons.css" rel="stylesheet"></link>
+            <!--Beyond styles-->
+            <link href="__CSS__/beyond.css" id="beyond-link" rel="stylesheet" type="text/css"></link>
+            <link href="__CSS__/demo.css" rel="stylesheet"></link>
+            <link href="__CSS__/typicons.css" rel="stylesheet"></link>
+            <link href="__CSS__/animate.css" rel="stylesheet"></link>
+            <link href="__LAYJS__/skin/layui.css" rel="stylesheet"></link>
+            <link rel="stylesheet" href="__LAYPAGE__/laypage.css" />
+            <script src="__JS__/jquery_002.js"></script>
+            <script src="__JS__/bootstrap.js"></script>
+            <script src="__JS__/jquery.js"></script>
+            <!-- 引入ueditor -->
+            <script src="__UEDITOR__/ueditor.config.js"></script>
+            <script src="__UEDITOR__/ueditor.all.min.js"></script>
+            <script src="__UEDITOR__/lang/zh-cn/zh-cn.js"></script>
+        </meta>
+    </head>
+    <body>
+        <!-- 头部 -->
+        <include file='Common/header'/>
+        <!-- /头部 -->
+        <div class="main-container container-fluid">
+            <div class="page-container">
+                <include file='Common/left'/>
+                <!-- /Page Sidebar -->
+                <!-- Page Content -->
+                <div class="page-content">
+                    <!-- Page articlecrumb -->
+                    <div class="page-breadcrumbs">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="#">
+                                    文章
+                                </a>
+                            </li>
+                            <li class="active">
+                                文章管理
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /Page articlecrumb -->
+                    <!-- Page Body -->
+                    <div class="page-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12 col-xs-12">
+                                <div class="widget">
+                                <input type="hidden" id=articleId value="{$articleRes.id}">
+                                    <div class="widget-header bordered-bottom bordered-blue">
+                                        <span class="widget-caption">
+                                        <if condition='$publishInfo'>
+                                            {$publishInfo}
+                                        <else/>
+                                            新增文章
+                                        </if>
+                                        </span>
+                                    </div>
+                                    <div class="widget-body">
+                                        <div id="horizontal-form">
+                                            <div class="form-horizontal" method="post" role="form">
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label no-padding-right" for="article_name">
+                                                        文章标题:
+                                                    </label>
+                                                    <div class="col-sm-6">
+                                                        <input class="form-control" id="title" name="title" placeholder="" value="{$articleRes.title}" required="" type="text">
+                                                        </input>
+                                                    </div>
+                                                    <p class="help-block col-sm-4 red">
+                                                        * 必填
+                                                    </p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label no-padding-right" for="article_name">
+                                                        文章栏目:
+                                                    </label>
+                                                    <div class="col-sm-6">
+                                                        <select name='articleCate' id='cate_id'>
+                                                            <volist name='articleCate' id='vo'>
+                                                            <option value='{$vo.id}'>{$vo.catename}</option>
+                                                            </volist>
+                                                        </select>
+                                                    </div>
+                                                    <p class="help-block col-sm-4 red">
+                                                        * 必填
+                                                    </p>
+                                                </div>
+                                                <div class="form-group span4">
+                                                    <label class="col-sm-2 control-label no-padding-right" for="article_name">
+                                                        文章内容:
+                                                    </label>
+                                                    <div class="tab-pane" id="profile11">
+                                                        <textarea class="textarea_editor span4" id="article_desc" name="article_desc">{$articleRes.content}</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-2 col-sm-10">
+                                                        <button class="btn btn-default sub_btn article">
+                                                            保存信息
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Page Body -->
+                </div>
+                <!-- /Page Content -->
+            </div>
+        </div>
+        <!--Beyond Scripts-->
+        <script src="__JS__/beyond.js"></script>
+        <script src="__JS__/article/add.js"></script>
+        <script src="__LAYJS__/layer.js"></script>
+    </body>
+</html>

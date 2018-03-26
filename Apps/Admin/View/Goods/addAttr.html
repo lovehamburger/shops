@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html><head>
+	    <meta charset="utf-8">
+    <title>童老师ThinkPHP交流群：484519446</title>
+
+            <meta content="Dashboard" name="description"></meta>
+            <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+            <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+            <meta content="text/html; charset=utf-8" http-equiv="Content-Type"></meta>
+            <!--Basic Styles-->
+            <link href="__CSS__/bootstrap.css" rel="stylesheet"></link>
+            <link href="__CSS__/font-awesome.css" rel="stylesheet"></link>
+            <link href="__CSS__/weather-icons.css" rel="stylesheet"></link>
+            <!--Beyond styles-->
+            <link href="__CSS__/beyond.css" id="beyond-link" rel="stylesheet" type="text/css"></link>
+            <link href="__CSS__/demo.css" rel="stylesheet"></link>
+            <link href="__CSS__/typicons.css" rel="stylesheet"></link>
+            <link href="__CSS__/animate.css" rel="stylesheet"></link>
+            <link href="__LAYJS__/skin/layui.css" rel="stylesheet"></link>
+            <link rel="stylesheet" href="__LAYPAGE__/laypage.css" />
+    
+</head>
+<body>
+	<!-- 头部 -->
+	<include file="Common/header" />
+
+	<!-- /头部 -->
+	
+	<div class="main-container container-fluid">
+		<div class="page-container">
+			            <!-- Page Sidebar -->
+            <include file="Common/left" />
+            <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                                        <li>
+                        <a href="__MODULE__/Index/index">系统</a>
+                    </li>
+                                        <li>
+                        <a href="__CONTROLLER__/lst">类型列表</a>
+                    </li>
+                                        <li class="active">添加类型</li>
+                                        </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+                <div class="page-body">
+                    
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">新增类型</span>
+            </div>
+            <div class="widget-body">
+                <div id="horizontal-form">
+                    <div class="form-horizontal" role="form" >
+                        <input type='hidden' class="attrId" value='{$attrRes.id}'>
+                        <div class="form-group">
+                            <label for="username" class="col-sm-2 control-label no-padding-right">属性名称</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" id="attr_name" placeholder="" name="attr_name"  type="text" value = '{$attrRes.attr_name}'>
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="col-sm-2 control-label no-padding-right">属性类型</label>
+                            <div class="col-sm-6 radio">
+                                <label>
+                                    <input type="radio" <if condition='$attrRes.attr_type eq 0'>checked="checked"</if>  value="0" name="attr_type">
+                                    <span class="text">唯一</span>
+                                </label>
+                                <label>
+                                    <input type="radio" <if condition='$attrRes.attr_type eq 1'>checked="checked"</if> class="inverted" value="1" name="attr_type">
+                                    <span class="text">单选</span>
+                                </label>
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="col-sm-2 control-label no-padding-right">属性可选值</label>
+                            <div class="col-sm-4">
+                                <textarea name='attr_values' style="width: 80%;height: 100px">{$attrRes.attr_values}</textarea>
+                            </div>
+                            <p class="col-sm-4 red" style="line-height: 135px">多个值请用,号隔开</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="col-sm-2 control-label no-padding-right">商品类型</label>
+                            <div class="col-sm-6">
+                               <select  style=" padding-top:3px">
+                                    <volist name='goodType' id='vo'>
+                                        <option name='typeId' <if condition="$vo.id eq $attrRes['type_id']">selected='selected'</if> value="{$vo.id}">{$vo.type_name}</option>
+                                    </volist>
+                                </select>
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default attrAdd">保存信息</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+		</div>	
+	</div>
+
+        <script src="__JS__/jquery_002.js"></script>
+        <script src="__JS__/bootstrap.js"></script>
+        <script src="__JS__/jquery.js"></script>
+        <!--Beyond Scripts-->
+        <script src="__JS__/beyond.js"></script>
+        <script src="__JS__/goodsType/addAttr.js"></script>
+        <script src="__LAYJS__/layer.js"></script>
+</body></html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <title>
+                陈龙辉
+            </title>
+            <meta content="Dashboard" name="description"></meta>
+            <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+            <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+            <meta content="text/html; charset=utf-8" http-equiv="Content-Type"></meta>
+            <!--Basic Styles-->
+            <link href="__CSS__/bootstrap.css" rel="stylesheet"></link>
+            <link href="__CSS__/font-awesome.css" rel="stylesheet"></link>
+            <link href="__CSS__/weather-icons.css" rel="stylesheet"></link>
+            <!--Beyond styles-->
+            <link href="__CSS__/beyond.css" id="beyond-link" rel="stylesheet" type="text/css"></link>
+            <link href="__CSS__/demo.css" rel="stylesheet"></link>
+            <link href="__CSS__/typicons.css" rel="stylesheet"></link>
+            <link href="__CSS__/animate.css" rel="stylesheet"></link>
+        </meta>
+    </head>
+    <body>
+        <!-- 头部 -->
+        <include file='Common/header'/>
+        <!-- /头部 -->
+        <div class="main-container container-fluid">
+            <div class="page-container">
+                <include file='Common/left'/>
+                <!-- /Page Sidebar -->
+                <!-- Page Content -->
+                <div class="page-content">
+                    <!-- Page Breadcrumb -->
+                    <div class="page-breadcrumbs">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="#">
+                                    系统
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    用户管理
+                                </a>
+                            </li>
+                            <li class="active">
+                               <if condition='$publishInfo'>
+                                    {$publishInfo}
+                                <else/>
+                                    新增用户
+                                </if>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /Page Breadcrumb -->
+                    <!-- Page Body -->
+                    <div class="page-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12 col-xs-12">
+                                <div class="widget">
+                                <input type="hidden" id=adminId value="{$adminRes.id}">
+                                    <div class="widget-header bordered-bottom bordered-blue">
+                                        <span class="widget-caption">
+                                        <if condition='$publishInfo'>
+                                            {$publishInfo}
+                                        <else/>
+                                            新增用户
+                                        </if>
+                                        </span>
+                                    </div>
+                                    <div class="widget-body">
+                                        <div id="horizontal-form">
+                                            <div class="form-horizontal" method="post" role="form">
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label no-padding-right" for="username">
+                                                        用户名:
+                                                    </label>
+                                                    <div class="col-sm-6">
+                                                        <input class="form-control" id="username" name="username" placeholder="" value="{$adminRes.username}" required="" type="text">
+                                                        </input>
+                                                    </div>
+                                                    <p class="help-block col-sm-4 red">
+                                                        * 必填
+                                                    </p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label no-padding-right" for="password">
+                                                        密　码:
+                                                    </label>
+                                                    <div class="col-sm-6">
+                                                        <input class="form-control" id="password" name="password" placeholder="" required="" type="password">
+                                                        </input>
+                                                    </div>
+                                                    <p class="help-block col-sm-4 red">
+                                                        * 必填
+                                                    </p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-2 col-sm-10">
+                                                        <button class="btn btn-default sub_btn">
+                                                            保存信息
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Page Body -->
+                </div>
+                <!-- /Page Content -->
+            </div>
+        </div>
+        <!--Basic Scripts-->
+        <script src="__JS__/jquery_002.js"></script>
+        <script src="__JS__/bootstrap.js"></script>
+        <script src="__JS__/jquery.js"></script>
+        <!--Beyond Scripts-->
+        <script src="__JS__/beyond.js"></script>
+        <script src="__JS__/admin/admin.js"></script>
+        <script src="__LAYJS__/layer.js"></script>
+    </body>
+</html>

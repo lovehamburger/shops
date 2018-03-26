@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <title>
+                陈龙辉
+            </title>
+            <meta content="Dashboard" name="description"></meta>
+            <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+            <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+            <meta content="text/html; charset=utf-8" http-equiv="Content-Type"></meta>
+            <!--Basic Styles-->
+            <link href="__CSS__/bootstrap.css" rel="stylesheet"></link>
+            <link href="__CSS__/font-awesome.css" rel="stylesheet"></link>
+            <link href="__CSS__/weather-icons.css" rel="stylesheet"></link>
+            <!--Beyond styles-->
+            <link href="__CSS__/beyond.css" id="beyond-link" rel="stylesheet" type="text/css"></link>
+            <link href="__CSS__/demo.css" rel="stylesheet"></link>
+            <link href="__CSS__/typicons.css" rel="stylesheet"></link>
+            <link href="__CSS__/animate.css" rel="stylesheet"></link>
+            <link href="__LAYJS__/skin/layui.css" rel="stylesheet"></link>
+            <link rel="stylesheet" href="__LAYPAGE__/laypage.css" />
+        </meta>
+    </head>
+    <body>
+        <!-- 头部 -->
+        <include file='Common/header'/>
+        <!-- /头部 -->
+        <div class="main-container container-fluid">
+            <div class="page-container">
+                <include file='Common/left'/>
+                <!-- /Page Sidebar -->
+                <!-- Page Content -->
+                <div class="page-content">
+                    <!-- Page brandcrumb -->
+                    <div class="page-breadcrumbs">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="#">
+                                    品牌
+                                </a>
+                            </li>
+                            <li class="active">
+                                品牌管理
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /Page brandcrumb -->
+                    <!-- Page Body -->
+                    <div class="page-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12 col-xs-12">
+                                <div class="widget">
+                                <input type="hidden" id=brandId value="{$brandRes.id}">
+                                    <div class="widget-header bordered-bottom bordered-blue">
+                                        <span class="widget-caption">
+                                        <if condition='$publishInfo'>
+                                            {$publishInfo}
+                                        <else/>
+                                            新增品牌
+                                        </if>
+                                        </span>
+                                    </div>
+                                    <div class="widget-body">
+                                        <div id="horizontal-form">
+                                            <div class="form-horizontal" method="post" role="form">
+                                                <div class="form-group row">
+                                                    <label class="col-md-2 control-label no-padding-right" for="brand_logo">
+                                                        品牌LOGO:
+                                                    </label>
+                                                    <div class="col-md-3">
+                                                        <input  name="brand_logo"  type="file">
+                                                        </input>
+                                                        <input type="hidden" value='{$brandRes.brand_logo}' id="imgurl">
+                                                        <iframe style="display: none"  src="" name="up" width="100%" style="border:1px solid red"></iframe>
+                                                    </div>
+                                                    <div class="col-md-6" class="img"><img  class="img-responsive" style="max-width: 70%;max-height: 90px;" src='{$brandRes.brand_logo}'  id="imgid"/></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label no-padding-right" for="brand_name">
+                                                        品牌名称:
+                                                    </label>
+                                                    <div class="col-sm-6">
+                                                        <input class="form-control" id="brand_name" name="brand_name" placeholder="" value="{$brandRes.brand_name}" required="" type="text">
+                                                        </input>
+                                                    </div>
+                                                    <p class="help-block col-sm-4 red">
+                                                        * 必填
+                                                    </p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label no-padding-right" for="password">
+                                                        品牌链接:
+                                                    </label>
+                                                    <div class="col-sm-6">
+                                                        <input class="form-control" id="brand_url" name="brand_url" value='{$brandRes.brand_url}' placeholder="品牌链接"  type="text">
+                                                        </input>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-2 col-sm-10">
+                                                        <button class="btn btn-default sub_btn brand">
+                                                            保存信息
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Page Body -->
+                </div>
+                <!-- /Page Content -->
+            </div>
+        </div>
+        <!--Basic Scripts-->
+        <script src="__JS__/jquery_002.js"></script>
+        <script src="__JS__/bootstrap.js"></script>
+        <script src="__JS__/jquery.js"></script>
+        <!--Beyond Scripts-->
+        <script src="__JS__/beyond.js"></script>
+        <script src="__JS__/brand/add.js"></script>
+        <script src="__LAYJS__/layer.js"></script>
+    </body>
+</html>

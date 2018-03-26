@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html><head>
+	    <meta charset="utf-8">
+    <title>童老师ThinkPHP交流群：484519446</title>
+
+    <meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="__CSS__/bootstrap.css" rel="stylesheet"></link>
+    <link href="__CSS__/font-awesome.css" rel="stylesheet"></link>
+    <link href="__CSS__/weather-icons.css" rel="stylesheet"></link>
+    <!--Beyond styles-->
+    <link href="__CSS__/beyond.css" id="beyond-link" rel="stylesheet" type="text/css"></link>
+    <link href="__CSS__/demo.css" rel="stylesheet"></link>
+    <link href="__CSS__/typicons.css" rel="stylesheet"></link>
+    <link href="__CSS__/animate.css" rel="stylesheet"></link>
+
+    <script src="__JS__/jquery_002.js"></script>
+    <script src="__JS__/bootstrap.js"></script>
+    <script src="__JS__/jquery.js"></script>
+    <!-- 引入ueditor -->
+    <script src="__UEDITOR__/ueditor.config.js"></script>
+    <script src="__UEDITOR__/ueditor.all.min.js"></script>
+    <script src="__UEDITOR__/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript" src="__JS__/goods/lee_pic.js"></script>
+    <script type="text/javascript" src="__UPLOADIFY__/jquery.uploadify.min.js"></script>
+    <link rel="stylesheet" href="__UPLOADIFY__/uploadify.css">
+    <script type="text/javascript">
+        var ThinkPHP = {
+        'UPLOADIFY' : '__UPLOADIFY__',
+    };
+    </script>
+    <style type="text/css">
+        .text{
+            text-align: center;
+            width: 222px;
+            position: absolute;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+	<!-- 头部 -->
+	<include file="Common/header" />
+	<!-- /头部 -->
+	
+	<div class="main-container container-fluid">
+		<div class="page-container">
+			            <!-- Page Sidebar -->
+            <include file="Common/left" />
+            <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                                        <li>
+                        <a href="__MODULE__/Index/index">系统</a>
+                    </li>
+                                        <li>
+                        <a href="__CONTROLLER__/lst">商品列表</a>
+                    </li>
+                                        <li class="active">添加商品</li>
+                                        </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+                <div class="page-body">
+                    
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">新增商品</span>
+            </div>
+            <div class="widget-body">
+                <div id="horizontal-form">
+                    <div class="form-horizontal" >
+                        <!-- 111111111111111111111111111111111 -->
+                        <div class="tabbable">
+                        <input type="hidden" name="goodsId" value="{:I('get.goodsId')}">
+                            <ul id="myTab11" class="nav nav-tabs tabs-flat">
+                                <li class="active">
+                                    <a href="#home11" data-toggle="tab">
+                                        基本信息
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="#profile11" data-toggle="tab">
+                                        商品描述
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="#profile12" data-toggle="tab">
+                                        会员价格
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="#profile13" data-toggle="tab">
+                                        商品属性
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="#profile14" class="profile14" data-toggle="tab">
+                                        商品图片
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content tabs-flat">
+                                <div class="tab-pane active" id="home11">
+
+                                   <div class="form-group">
+                                        <label class="col-sm-2 control-label no-padding-right" for="username">商品名称</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="goods_name" placeholder="" value="{$goodRes.goods_name}" class="form-control">
+                                        </div>
+                                        <p class="help-block col-sm-4 red">* 必填</p>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 control-label no-padding-right" for="username">商品缩略图</label>
+                                        <div class="col-sm-4">
+                                            <input type="file"  name="original">
+                                        </div>
+                                        <iframe style="display: none" src="" name="up"></iframe>
+                                        <input type="hidden" value='{$goodRes.original}' id="imgurl">
+                                         <div  class="col-sm-6" class="img"><img  class="img-responsive" style="max-width: 70%;max-height: 90px;" src='{$goodRes.sm_thumb}'  id="imgid"/></div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label no-padding-right" for="username">所属分类</label>
+                                        <div class="col-sm-6">
+                                            <select id='cate_id' name="cate_id">
+                                                <option value="">请选择</option>
+                                                <volist name="cateRes" id="vo">
+                                                    <option value="{$vo.id}" <if condition = "$goodRes['cate_id'] eq $vo['id']">selected</if>>{$vo.html}{$vo.catename}</option>
+                                                </volist>
+                                            </select>
+                                        </div>
+                                        <p class="help-block col-sm-4 red">* 必填</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label no-padding-right" for="username">所属品牌</label>
+                                        <div class="col-sm-6">
+                                            <select id="brand_id" name="brand_id">
+                                            <option value="0">请选择</option>
+                                            <volist name="brandRes" id="vo">
+                                                <option value="{$vo.id}" <if condition = "$goodRes['brand_id'] eq $vo['id']">selected</if>>{$vo.brand_name}</option>
+                                            </volist>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label no-padding-right" for="username">市场价格</label>
+                                        <div class="col-sm-6">
+                                            <input type="text"  name="market_price" placeholder="" value="{$goodRes.market_price}"  class="form-control" >
+                                        </div>
+                                        <p class="help-block col-sm-4 red">* 必填</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label no-padding-right" for="username">本店价格</label>
+                                        <div class="col-sm-6">
+                                            <input type="text"  name="shop_price" placeholder="" value="{$goodRes.shop_price}" class="form-control" >
+                                        </div>
+                                        <p class="help-block col-sm-4 red">* 必填</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label no-padding-right" for="username">商品重量</label>
+                                        <div class="col-sm-6">
+                                            <input type="text"  name="goods_weight" placeholder="" value="{$goodRes.goods_weight}" style="width:80%; float:left; margin-right:10px;" class="form-control" >
+                                            <select name="weight_unit">
+                                                <option value="g">克</option>
+                                                <option value="kg">千克</option>
+                                            </select>
+                                        </div>
+                                        <p class="help-block col-sm-4 red">* 必填</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label no-padding-right" for="username">是否上架</label>
+                                       <div class="col-sm-6">
+                                           <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="onsale"  value='' class="colored-success" <if condition = "$goodRes['onsale'] eq 1">checked="checked"</if>>
+                                                    <span class="text">上架</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <p class="help-block col-sm-4 red">* 必填</p>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <label class="col-sm-2 control-label no-padding-right" for="username">商品推荐</label>
+                                       <div class="col-sm-6">
+                                           <div class="checkbox">
+                                                <volist name="recposres" id="recpos">
+                                                    <label style="margin-right:15px;">
+                                                        <input type="checkbox" name="recid[]" value="{$recpos.id}"  class="colored-success">
+                                                        <span class="text">{$recpos.recname}</span>
+                                                    </label>
+                                                </volist>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+                                </div>
+
+                                <div class="tab-pane" id="profile11">
+                                    <textarea class="textarea_editor span8" id="goods_desc" name="goods_desc">{$goodRes.goods_desc}</textarea>
+                                </div>
+
+                                <div class="tab-pane" id="profile12">
+                                    <volist name="Levels" id="vo">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label no-padding-right" for="username">{$vo.level_name}</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" value="{$PriceArr[$vo['id']]}" level='{$vo.id}' name="mp[{$vo.id}]" class="form-control mp">
+                                            </div>
+                                        </div>
+                                    </volist>
+                                </div>
+
+                                <div class="tab-pane" id="profile13">
+                                    <div class="form-group">
+                                            <label class="col-sm-4 control-label no-padding-right" for="username">选择商品类型</label>
+                                            <div class="col-sm-6">
+                                               <select <if condition="I('goodsId')">disabled="disabled"</if> id='type_id' name="type_id">
+                                                   <option value=''>选择商品类型</option>
+                                                   <volist name="goodsType" id="vo">
+                                                        <option value="{$vo.id}" <if condition = "$goodRes['type_id'] eq $vo['id']">selected</if>>{$vo.type_name}</option>
+                                                   </volist>
+                                               </select>
+                                            </div>
+                                    </div>
+                                    <div>
+                                        <ul id="attr">
+                                            <if condition="I('goodsId') && $attr">
+                                                <foreach name="attr" item="vo" key="k">
+                                                    <div val="{$vo.id}" class='form-group'>
+                        <label class='col-sm-2 control-label no-padding-right'  for='username'>{$vo.attr_name}</label>
+                        <div class='col-sm-6'>
+                            <if condition="$vo['attr_type'] eq 0 && $vo['attr_values'] eq '' ">
+                                <input type='text' val="{$goodsAttrs[$vo['id']][0]['id']}" name='old_attr_value' placeholder='' value="{$goodsAttrs[$vo['id']][0]['attr_value']}" class='form-control'>
+                            </if>
+                            <if condition="$vo['attr_type'] eq 0 && $vo['attr_values'] neq '' ">
+                                <select val="{$goodsAttrs[$vo['id']][0]['id']}" name='old_attr_value'>
+                                    <volist name=":explode(',',$vo['attr_values'])" id="value">
+                                        <option <if condition="$goodsAttrs[$vo['id']][0]['attr_value'] eq $value">selected</if>>{$value}</option>
+                                    </volist>
+                                </select>
+                            </if>
+                            <if condition="$vo['attr_type'] eq 1 && $vo['attr_values'] neq '' ">
+                                <div class='form-group row only'>
+                                    <div class='col-sm-2'>
+                                    <select val="{$vo.id}" name='old_attr_value'>
+                                        <volist name=":explode(',',$vo['attr_values'])" id="value">
+                                            <option values="{$goodsAttrs[$vo['id']][$key]['id']}" <if condition="$goodsAttrs[$vo['id']][0]['attr_value'] eq $value">selected</if>>{$value}</option>
+                                        </volist>
+                                    </select>
+                                   </div>
+                                   <label class='col-sm-2 control-label no-padding-right' for='username'>价格</label>
+                                   <div class='col-sm-3'>
+                                   <input type='text' name='old_attr_price' value="{$goodsAttrs[$vo['id']][0]['attr_price']}" placeholder='' class='form-control'>
+                                   </div>
+                                    <span class='addAttr' value="{$goodsAttrs[$vo['id']][0]['id']}">[+]</span>
+                                </div>
+                                <foreach name="goodsAttrs[$vo['id']]" item="values" key="keys">
+                                    <if condition="$keys gt 0">
+                                    <div class='form-group'>
+                                    <div class='col-sm-2'>
+                                    <select val="{$vo.id}" name='old_attr_value'>
+                                        <volist name=":explode(',',$vo['attr_values'])" id="value">
+                                            <option values="{$goodsAttrs[$vo['id']][$key]['id']}" <if condition="$values['attr_value'] eq $value">selected</if>>{$value}</option>
+                                        </volist>
+                                    </select>
+                                   </div>
+                                   <label class='col-sm-2 control-label no-padding-right' for='username'>价格</label>
+                                   <div class='col-sm-3'>
+                                   <input type='text' value="{$values['attr_price']}" name='old_attr_price' placeholder='' class='form-control'>
+                                   </div>
+                                    <span class='addAttr' value="{$values['id']}">[-]</span>
+                                    </div>
+                                </if>
+                                   </foreach>
+                            </if>
+                        </div>
+                    </div>
+                    </foreach>
+                                            </if>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane" id="profile14">
+                                    <input type="file" name="file" id="file">
+                                    <div class="goods_pic_list">
+                                        <foreach name="goodsPicRes" item="value" key="key">
+                                        <div class="pic_content" style="display:inline;"><span class="remove"></span><span class="text delPic" onclick="delPic({$value['id']})" val="{$value['id']}">删除</span><img src="{$value.sm_thumb}" class="pic_list" style="display: inline; left: -61px; top: -19px;"></div>
+                                    </foreach>
+                                    </div>
+                                    <div class="pic_img"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <button style="width:150px;" class="btn btn-darkorange btn-block goods">添加商品</button>
+                        <!-- 111111111111111111111111111111111 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+		</div>	
+	</div>
+
+    <!--Beyond Scripts-->
+    <script src="__JS__/beyond.js"></script>
+    <script src="__JS__/goods/add.js"></script>
+    <script src="__JS__/goods/lee_pic.js"></script>
+    <script src="__LAYJS__/layer.js"></script>
+</body></html>

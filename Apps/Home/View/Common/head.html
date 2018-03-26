@@ -1,0 +1,100 @@
+<div class="top_nav">
+
+  <script type="text/javascript">
+          //初始化主菜单
+            function sw_nav(obj,tag)
+            {
+     
+            var DisSub = document.getElementById("DisSub_"+obj);
+            var HandleLI= document.getElementById("HandleLI_"+obj);
+                if(tag==1)
+                {
+                    DisSub.style.display = "block";
+             
+                    
+                }
+                else
+                {
+                    DisSub.style.display = "none";
+                
+                }
+     
+            }
+     
+    </script>
+    <div class="block">     
+    
+        <ul class="top_bav_l">
+        <li class="top_sc">
+           <a href="javascript:void(0);" onclick="AddFavorite('我的网站',location.href)">收藏本站</a>
+</li>
+            <li>关注我们：</li>
+            <li style="border:none" class="menuPopup" onmouseover="sw_nav(1,1);" onmouseout="sw_nav(1,0);">
+            <a id="HandleLI_1" href="javascript:;" title="微博" class="attention"></a> 
+            <div id="DisSub_1" class="top_nav_box  top_weibo"> 
+            <a href="http://e.weibo.com/ECMBT" target="_blank" title="新浪微博" class="top_weibo"></a>
+            <a href="http://e.t.qq.com/ecmoban_com" target="_blank" title="QQ微博" class="top_qq"></a> 
+            </div> 
+            </li> 
+            <li class="menuPopup" onmouseover="sw_nav(2,1);" onmouseout="sw_nav(2,0);">
+            <a id="HandleLI_2" href="javascript:;" title="微信" class="top_weixin"></a> 
+            <div id="DisSub_2" class="weixinBox" style="display: none;"> 
+		
+            <img src="__IMGAGES__/weixin.png" style="width:150px; height:190px;  background:#0000CC" height="190" width="150"> 
+            </div> 
+            </li>
+        </ul>
+    
+        <div class="header_r">
+        
+        <script type="text/javascript" src="list_files/transport.js"></script>
+        
+        <script type="text/javascript" src="list_files/utils.js"></script>        
+        <font id="login_check"></font>                                                
+        </div>
+    </div>
+</div>
+<div class=" block header_bg" style="margin-bottom: 0px;">
+  <div class="clear_f"></div>
+  <div class="header_top logo_wrap"> <a class="logo_new" href="mbmeilishuo/index.php"><img src="__IMGAGES__/logo.gif"></a>
+    <div class="ser_n">
+      <form id="searchForm" class="searchBox" name="searchForm" method="get" action="search.php" onsubmit="return checkSearchForm()">
+        <div class="search-table"> <span class="cur" data-type="1">宝贝</span> <em class="arrow"></em> </div>
+        <span class="ipt1"><em class="i_search"></em>
+        <input name="keywords" id="keyword"  value="童老师thinkphp交流群：484519446" class="searchKey" type="text">
+        </span> <span class="ipt2">
+        <input name="imageField" class="fm_hd_btm_shbx_bttn" value="搜 索" type="submit">
+        </span>
+      </form>
+      <div class="clear_f"></div>
+      <ul class="searchType none_f">
+      </ul>
+      <div style="padding:10px 0;">
+      <span>热门搜索：</span>
+      <?php 
+      $keywordsarr=explode(',', $configres['searchkeywords']);
+      foreach ($keywordsarr as $k => $v):
+      ?>
+      <a href="htt://127.0.0.1/shop/index.php/index/search/index/keywords/<?php echo $v;?>"><?php echo $v;?></a>
+      <?php endforeach;?>
+      </div>
+    </div>
+    <ul class="cart_info">
+      <li id="ECS_CARTINFO"><span class="carts_num none_f"><a href="mbmeilishuo/flow.php" title="查看购物车">0</a></span> <em class="i_cart">&nbsp;</em><a href="mbmeilishuo/flow.php">查看购物车</a></li>
+      <li><a href="mbmeilishuo/user.php" target="_blank"><em class="i_order">&nbsp;</em>我的订单</a></li>
+    </ul>
+  </div>
+</div>
+<div style="clear:both"></div>
+ 
+<div class="menu_box clearfix"> 
+<div class="block"> 
+<div class="menu">
+  <a href="mbmeilishuo/index.php">首页<span></span></a>
+  <volist name="midnav" id="nav">
+  <a href="{$nav.nav_url}" <if condition="$nav['nav_blank'] eq 1">target="_blank"</if>>{$nav.nav_name}<span></span></a>
+  </volist>
+ 
+ </div> 
+</div>
+</div>

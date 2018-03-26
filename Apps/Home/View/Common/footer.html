@@ -1,0 +1,97 @@
+<div class="footer">
+  <div class="foot_con">
+    <div class="f_list service_info">
+      <div class="kefu"> <span class="tel_ico"></span>
+        <p class="f20_f">4000-021-758</p>
+        <p class="f14_f mt4_f">模板堂客服热线</p>
+      </div>
+      <ol class="business">
+        <li>周一至周日：09:00-22:00</li>
+      </ol>
+    </div>
+     
+        <volist name="hcres" id="vo">
+          <div class="f_list">
+            <h4>{$vo.catename}</h4>
+            <ul>
+              <volist name="vo['article']" id="vo2">
+              <li><a target="_blank" href="/mbmeilishuo/article.php?id=9" title="售后流程">{$vo2.title}</a></li>
+              </volist>
+            </ul>
+          </div>
+        </volist>
+     
+     
+     
+     
+     
+     
+     
+     
+     
+        <div class="f_list">
+      <h4>关注我们</h4>
+      <ul>
+        <li class="sina_attention"> <a href="http://weibo.com/ECMBT/home?topnav=1&amp;wvr=5" target="_blank"><span class="i_sina">&nbsp;</span>新浪微博</a></li>
+        <li><a href="#" target="_blank"><span class="i_qzone">&nbsp;</span>QQ空间</a></li>
+        <li><a href="#" target="_blank"><span class="i_tx">&nbsp;</span>腾讯微博</a></li>
+      </ul>
+    </div>
+    <div class="f_list qr-code">
+      <h4>模板堂微信服务号</h4>
+      <img src="__PUBLIC__/images/weixinfuwuhao.png" alt="模板堂服务号二维码"> </div>
+    <div class="f_list weixin_code">
+      <h4>模板堂客户端下载</h4>
+      <a class="client_pic" href="http://www.ecmoban.com/topic/ecmoban_app/" target="_blank"></a> </div>
+    <div class="blank"></div>
+     
+       
+       
+      <div class="blank"></div>
+    
+    <div id="bottomNav" class="rolling">
+    <h4 class="f_links">底部导航：</h4>
+      <ul id="link_slide">
+      <li>
+        <volist name="bottomnav" id="nav">
+        <a href="{$nav.nav_url}" <if condition="$nav['nav_blank'] eq 1">target="_blank"</if>>{$nav.nav_name}</a>
+        </volist>
+      </li>
+      </ul>
+    </div>
+    
+    
+    
+    
+    <div class="text" style="height:1px ; width:1px; overflow:hidden;">  
+       
+      Tel: 123456 
+       
+       
+       
+       
+      <a href="http://wpa.qq.com/msgrd?V=1&amp;Uin=851818184&amp;Site=%E9%BC%8E%E6%96%B0%E6%96%87%E5%8C%96QQ851818184&amp;Menu=yes" target="_blank"><img src="__PUBLIC__/images/pa.gif" alt="QQ" border="0" height="16"> 851818184</a> 
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+      <img src="__PUBLIC__/images/msn.gif" alt="MSN" border="0" height="17" width="18"> <a href="msnim:chat?contact=ecmoban@msn.com">ecmoban@msn.com</a> 
+       
+       
+       
+       
+      <br>
+    </div>
+    <div class="record"> © 2005-2016 童老师thinkphp交流群：484519446 版权所有，并保留所有权利。  &nbsp; <a href="#" target="_blank">电信与信息服务业务经营许可证100798号</a>&nbsp; <a href="#" target="_blank">企业法人营业执照</a>&nbsp; {$configres.beian}&nbsp; 京公网安备110108006045&nbsp;<br>
+      客服邮箱：kf@mobantang.com&nbsp;&nbsp;客服电话：4000-021-758&nbsp; 文明办网文明上网举报电话：010-0000000 &nbsp; <a href="#" target="_blank">违法不良信息举报中心</a> </div>
+  </div>
+  <div class="blank10"></div>
+</div>
+<script src="__PUBLIC__/style/jquery.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/style/login.js"></script>
