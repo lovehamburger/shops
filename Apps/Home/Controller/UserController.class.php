@@ -8,7 +8,8 @@ class UserController extends BaseController {
 	 * @return [type] [description]
 	 */
 	public function login(){
-		$this->display();
+		$this->display('user/login');
+		U();
 	}
 
 	/**
@@ -29,6 +30,13 @@ class UserController extends BaseController {
 		$passWord = trim(I('post.password'));
 		$verifyCode = trim(I('post.verify_code'));
         D('Home/Ads')->getAds();
-		A('Home/User','Event')->_checkLogin();
+		$checkLogin = A('Home/User','Event')->_checkLogin($userName,$passWord,$verifyCode);
+        if ($checkLogin['err_code'] > 0) {
+            $this->ajaxReturn($checkLogin);
+        }
+	}
+
+	public function reg(){
+        $this->display('user/reg');
 	}
 }

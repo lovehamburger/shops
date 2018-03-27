@@ -157,10 +157,10 @@
             data : $('#loginform').serialize(),
             dataType : 'json',
             success : function(res){
-                if(res.status == 1){
+                if(res.err_code == 0){
                     window.location.href = res.url;
                 }else{
-                    showErrorMsg(res.msg);
+                    showErrorMsg(res.err_msg);
                     verify();
                 }
             },
@@ -197,7 +197,7 @@
     }
 
     function verify(){
-        $('#verify_code_img').attr('src','/index.php?m=Home&c=User&a=verify&r='+Math.random());
+        $('#verify_code_img').attr('src','Home-User-verify?code='+Math.random());
     }
 </script>
 </body>

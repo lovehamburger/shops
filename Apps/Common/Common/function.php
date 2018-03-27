@@ -25,7 +25,7 @@ function verify(){
 }
 
 /**
- * 设置验证码
+ * 检验验证码
  * @return [type] [description]
  */
 function checkVerify($code, $id = ''){
@@ -55,5 +55,37 @@ function setThumb($width,$height,$open,$save){
 	$image->open($open);        
 	// 按照原图的比例生成一个最大为150*150的缩略图并保存为thumb.jpg
 	$image->thumb($width,$height)->save($save);
+}
+
+/**
+ * 验证手机号码是否正确
+ */
+function checkTel($tel){
+    return (preg_match("/^1[0-9]{10}$/",$tel)) ?true:false;
+}
+/**
+ * 验证手邮箱是否正确
+ */
+function checkEmail($mail){
+    $checkmail = "/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/";//定义正则表达式
+    if(preg_match($checkmail,$mail)){
+        return true;
+	}else{
+        return false;
+	}
+}
+
+/**
+ * 生成密码的混淆码
+ * @param unknown $p_iShop
+ * @param unknown $p_iUserID
+ */
+function randPswSalter()
+{
+    $str = "j8f4kOMsKJqXSe2cnzHvAFWmDaVCZ0BQEpw69Ty5RtIUhGbrLxg1PodYu73iNl";
+
+    $str = str_shuffle($str);
+
+    return substr($str, 0, 5); // 从0开始截取位置5位
 }
 ?> 
