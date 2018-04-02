@@ -2,15 +2,13 @@
 namespace Home\Model;
 use Think\Model;
 class UserModel extends Model{
-	public function getUserInfoByPhone($adsPos,$count,$field){
-		$param['posid'] = $adsPos;
-		$param['ison'] = 1;
-		return M('ad')->field($field)->where($param)->limit($count)->select();
+	public function getUserInfoByMobile($mobile,$field){
+		$param['mobile'] = $mobile;
+		return M('users')->where($param)->getField($field);
 	}
 
-    public function getUserInfoByEmail($adsPos){
-        $param['posid'] = $adsPos;
-        $param['ison'] = 1;
-        return M('ad')->field($field)->where($param)->limit($count)->select();
+    public function getUserInfoByEmail($email,$field){
+        $param['email'] = $email;
+        return M('users')->where($param)->getField($field);
     }
 }

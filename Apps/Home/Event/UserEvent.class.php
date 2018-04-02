@@ -33,4 +33,67 @@ class UserEvent extends BaseEvent {
         if(!checkVerify($verifyCode)) return array_err('45424','验证码输入错误!');
         //开始验证是否正确
     }
+
+    public function _vCode($userName,$verifyCode,$type){
+        if($type !== 1 && $type !== 2) return array_err('45452','注册类型错误!');
+
+        if(empty($userName)) return array_err('45454','用户名不能为空!');
+
+        if (!checkTel($userName) && !checkEmail($userName)) return array_err('77849','账号格式不正确');
+
+        if(!checkVerify($verifyCode)) return array_err('45424','验证码输入错误!');
+
+        if($type == 1 && S('tp_config')['sms_regis_sms_enable'] == 1){
+            //验证手机号码是否已经被注册使用
+            $field = 'user_id';
+            $checkMobile = $this->_checkMobile($userName,$field);
+            if($checkMobile == true){
+                return array_err(9876,'该用户已注册,请确认');
+            }
+            //这边开始设置手机短信验证码
+           $a=  makeVerifyCode('REGISTER_VERITY_CODE',$userName,SMS_9721536);
+            echo'<pre>'; 
+                print_r($a);
+            echo'</pre>';
+            die();
+        }
+
+        if($type == 2 && S('tp_config')['sms_regis_sms_enable'] == 1){
+            //验证邮箱号码是否已经被注册使用
+            $field = 'user_id';
+            $checkEmail = $this->_checkEmail($userName,$field);
+            if($checkEmail == true){
+                return array_err(9876,'该用户已注册,请确认');
+            }
+            //这边验证邮箱验证码是否正确
+        }
+    }
+
+    /**
+     * @param $mobile
+     * @param $field
+     * @return bool
+     * 检查手机号码是否已经被注册
+     */
+    public function _checkMobile($mobile,$field){
+        $res = D('Home/User')->getUserInfoByMobile($mobile,$field);
+        if($res){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @param $mobile
+     * @param $field
+     * @return bool
+     * 检查手机号码是否已经被注册
+     */
+    public function _checkEmail($email,$field){
+        $res = D('Home/User')->getUserInfoByEmail($email,$field);
+        if($res){
+            return true;
+        }
+        return false;
+    }
 }

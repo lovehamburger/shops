@@ -18,7 +18,7 @@
     <a class="m-fnlogoa fn-fl" href=""><img src="{$tpshop_config['shop_info_store_logo']}"/></a><span class="m-fntit">欢迎注册</span>
     <div class="ui_tab">
         <ul class="ui_tab_nav regnav">
-            <li class="uli <if condition="I('get.t') eq ''">active</if> "><a href="{:U('Home-User-reg')}" >手机注册1</a></li>
+            <li class="uli <if condition="I('get.t') eq ''">active</if> "><a href="{:U('Home-User-reg')}" >手机注册</a></li>
             <li class="uli <if condition="I('get.t') eq 'email'">active</if> "><a href="{:U('Home-User-reg',array('t'=>'email'))}">邮箱注册</a></li>
             <li class="no fn-fr loginbtn">我已注册，马上<a href="{:U('Home-User-login')}">登录></a></li>
         </ul>
@@ -116,7 +116,7 @@
                                 </div>
                                 <div id="show-voice" class="show-voice"></div>
                             </div>
-                            <if condition="$regis_smtp_enable eq 1">
+                            <if condition="$tpshop_config['smtp_regis_smtp_enable'] eq 1">
                                 <div class="line">
                                     <label class="linel"><span class="dt">邮箱验证码：</span></label>
                                     <div class="liner">
@@ -182,7 +182,7 @@
 
     // 普通 图形验证码
     function verify(id){
-        $('#'+id).attr('src','/index.php?m=Home&c=User&a=verify&type=user_reg&r='+Math.random());
+        $('#'+id).attr('src','__MODULE__-User-verify?code='+Math.random());
     }
     function check_submit(){
         $.ajax({
@@ -212,36 +212,42 @@
         $('#'+id+'_div').show();
         $('#'+id2+'_div').hide();
     }
-//    // 发送手机短信
-//    function send_sms_reg_code(){
-//        var mobile = $('input[name="username"]').val();
-//        var verify_code = $('input[name="verify_code"]').val();
-//        if(!checkMobile(mobile)){
-//            layer.alert('请输入正确的手机号码', {icon: 2});//alert('请输入正确的手机号码');
-//            return;
-//        }
-//        if(verify_code == ''){
-//            layer.alert('请输入图像验证码', {icon: 2});//alert('请输入正确的手机号码');
-//            return;
-//        }
-//        var url = "/index.php?m=Home&c=Api&a=send_validate_code&scene=1&type=mobile&mobile="+mobile+"&verify_code="+verify_code;
-//        $.ajax({
-//            url:url,
-//            dataType: "json",
-//            success: function(res){
-//                if(res.status == 1)
-//                {
-//                    $('#count_down').attr("disabled","disabled");
-//                    intAs = {$tpshop_config['sms_sms_time_out']}; // 手机短信超时时间
-//                    jsInnerTimeout('count_down',intAs);
-//                    layer.alert(res.msg, {icon: 1});
-//                }else{
-//                    layer.alert(res.msg, {icon: 2});
-//                    verify('reflsh_code2')
-//                }
-//            }
-//        });
-//    }
+    // 发送手机短信
+    function send_sms_reg_code(){
+        var mobile = $('input[name="username"]').val();
+        var verify_code = $('input[name="verify_code"]').val();
+        if(!checkMobile(mobile)){
+            layer.alert('请输入正确的手机号码', {icon: 2});//alert('请输入正确的手机号码');
+            return;
+        }
+        if(verify_code == ''){
+            layer.alert('请输入图像验证码', {icon: 2});//alert('请输入正确的手机号码');
+            return;
+        }
+        var url = "__MODULE__-User-vCode";
+        var data = {};
+        data.type = 1;
+        data.username = mobile;
+        data.verify_code = verify_code;
+        $.ajax({
+            url:url,
+            type: 'POST',
+            dataType: "json",
+            data: data,
+            success: function(res){
+                if(res.err_code == 0)
+                {
+                    $('#count_down').attr("disabled","disabled");
+                    intAs = {$tpshop_config['sms_sms_time_out']}; // 手机短信超时时间
+                    jsInnerTimeout('count_down',intAs);
+                    layer.alert(res.err_msg, {icon: 1});
+                }else{
+                    layer.alert(res.err_msg, {icon: 2});
+                    verify('reflsh_code2')
+                }
+            }
+        });
+    }
 
     // 发送邮箱
     function send_smtp_reg_code(){
@@ -298,7 +304,6 @@
 
 
     function checkMobile(tel) {
-//        var reg = /(^1[3|4|5|7|8][0-9]{9}$)/;
         var reg = /^1[0-9]{10}$/;
         if (reg.test(tel)) {
             return true;
@@ -306,6 +311,7 @@
             return false;
         };
     }
+
 
     function checkEmail(str){
         var reg = /^([a-zA-Z0-9]+[_|\-|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\-|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;

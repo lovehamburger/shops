@@ -43,7 +43,7 @@ return array(
     //用户名
     'DB_PWD'=>'root',
     //密码
-    'DB_PREFIX'=>'sp_',
+    'DB_PREFIX'=>'tp_',
     //数据库表前缀
     'DB_DSN'=>'mysql:host=localhost;dbname=tpshop;charset=UTF8',
 
@@ -147,6 +147,13 @@ return array(
 	'CHECK_APP_DIR'         =>  true,       // 是否检查应用目录是否创建
 	'FILE_UPLOAD_TYPE'      =>  'Local',    // 文件上传方式
 	'DATA_CRYPT_TYPE'       =>  'Think',    // 数据加密方式
+
+    //短信信息
+    'THINK_SMS' => array(
+        'APPKEY' => 'LTAI7mgNp89saH7g',
+        'APPSECRET' => 'ejwDNmgosfBgU0PvVcqFPD9D0hpCO6',
+        'APPSIGNNAME' => '好加快', //短信签名
+    ),
 
 	'ADMIN_UPLOAD_BRAND'=> array(// 上传品牌图片
         'maxSize'    =>    3145728,
