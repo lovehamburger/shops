@@ -4,7 +4,7 @@ use Home\Controller\BaseController;
 
 class UserController extends BaseController {
 	/**
-	 * ç™»å½•é¡µé¢
+	 * µÇÂ¼Ò³Ãæ
 	 * @return [type] [description]
 	 */
 	public function login(){
@@ -12,7 +12,7 @@ class UserController extends BaseController {
 	}
 
 	/**
-	 * è®¾ç½®éªŒè¯ç 
+	 * ÉèÖÃÑéÖ¤Âë
 	 * @return [type] [description]
 	 */
 	public function verify(){
@@ -20,7 +20,7 @@ class UserController extends BaseController {
 	}
 
 	/**
-	 * ç™»å½•
+	 * µÇÂ¼
 	 * @return [type] [description]
 	 */
 	public function ajaxLogin(){
@@ -35,21 +35,21 @@ class UserController extends BaseController {
 	}
 
     /**
-     * æ³¨å†Œé¡µé¢
+     * ×¢²áÒ³Ãæ
      */
 	public function reg(){
-        $this->display('user/reg');
+        $this->display('user/reg'); 
 	}
 
     /**
-     * æ³¨å†Œæ•°æ®éªŒè¯
+     * ×¢²áÊı¾İÑéÖ¤
      */
 	public function _checkReg(){
 
 	}
 
     /**
-     * éªŒè¯å·ç åŠéªŒè¯ç 
+     * ÑéÖ¤ºÅÂë¼°ÑéÖ¤Âë
      */
 	public function vCode(){
 	    $type = I('post.type/d',1);
@@ -59,6 +59,6 @@ class UserController extends BaseController {
 	    if($vCode['err_code'] > 0){
             $this->ajaxReturn($vCode);
         }
-        $this->ajaxReturn(array_err(0,'çŸ­ä¿¡å‘é€æˆåŠŸ'));
+        $this->ajaxReturn(array_err(0,'¶ÌĞÅ·¢ËÍ³É¹¦'));
 	}
 }
