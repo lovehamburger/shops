@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">   
-    <title>注册-{$tpshop_config['shop_info_store_title']}</title>
-    <meta name="keywords" content="{$tpshop_config['shop_info_store_keyword']}" />
-    <meta name="description" content="{$tpshop_config['shop_info_store_desc']}" />
+    <title>注册-{$settings['shop_info_store_title']}</title>
+    <meta name="keywords" content="{$settings['shop_info_store_keyword']}" />
+    <meta name="description" content="{$settings['shop_info_store_desc']}" />
    
     <link href="__STATIC__/css/reg3.css" rel="stylesheet" />
  <link rel="stylesheet" type="text/css" href="__STATIC__/css/base.css"/>
@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="regcon">
-    <a class="m-fnlogoa fn-fl" href=""><img src="{$tpshop_config['shop_info_store_logo']}"/></a><span class="m-fntit">欢迎注册</span>
+    <a class="m-fnlogoa fn-fl" href=""><img src="{$settings['shop_info_store_logo']}"/></a><span class="m-fntit">欢迎注册</span>
     <div class="ui_tab">
         <ul class="ui_tab_nav regnav">
             <li class="uli <if condition="I('get.t') eq ''">active</if> "><a href="{:U('Home-User-reg')}" >手机注册</a></li>
@@ -26,10 +26,16 @@
         <if condition="I('get.t') eq ''">
             <form id="reg_form2"  method="post" action="">
                 <input type="hidden" name="scene" value="1">
+                <input type="hidden" name="type" value="1">
                 <div class="ui_tab_content">
                     <div class="m-fnbox ui_panel" style="display: block;">
                         <div class="fnlogin clearfix">
-
+                            <div class="line">
+                                <label class="linel"><span class="dt">会员名：</span></label>
+                                <div class="liner">
+                                    <input type="text" class="inp fmobile J_cellphone" placeholder="请输入会员名"  name="membername"  id="membername" required=""/>
+                                </div>
+                            </div>
                             <div class="line">
                                 <label class="linel"><span class="dt">手机号码：</span></label>
                                 <div class="liner">
@@ -45,7 +51,7 @@
                                 </div>
                                 <div id="show-voice" class="show-voice"></div>
                             </div>
-                            <if condition="$tpshop_config['sms_regis_sms_enable'] eq 1" >
+                            <if condition="$settings['regis_sms_enable'] eq 1" >
                                 <div class="line">
                                     <label class="linel"><span class="dt">手机验证码：</span></label>
                                     <div class="liner">
@@ -67,7 +73,7 @@
                                     <input type="password" class="inp fsecpass J_password2" placeholder="请再次输入密码" autocomplete="off" maxlength="16" id="password2" name="password2" required="" value=""/>
                                 </div>
                             </div>
-                            <if condition="$tpshop_config['basic_invite'] eq 1" >
+                            <if condition="$settings['basic_invite'] eq 1" >
                                 <div class="line">
                                     <label class="linel"><span class="dt">推荐人手机：</span></label>
                                     <div class="liner">
@@ -100,9 +106,15 @@
                 <div class="ui_tab_content">
                     <div class="m-fnbox ui_panel" style="display: block;">
                         <div class="fnlogin clearfix">
-
+                            <input type="hidden" name="type" value="2">
                             <div class="line">
-                                <label class="linel"><span class="dt">邮箱：</span></label>
+                                <label class="linel"><span class="dt">会员名：</span></label>
+                                <div class="liner">
+                                    <input type="text" class="inp fmobile J_cellphone" placeholder="请输入会员名"  name="membername"  id="membername" required=""/>
+                                </div>
+                            </div>
+                            <div class="line">
+                                <label class="linel"><span class="dt">邮箱号码：</span></label>
                                 <div class="liner">
                                     <input type="text" class="inp J_cellphone" placeholder="请输入邮箱"  name="username" id="username" required=""/>
                                 </div>
@@ -116,7 +128,7 @@
                                 </div>
                                 <div id="show-voice" class="show-voice"></div>
                             </div>
-                            <if condition="$tpshop_config['smtp_regis_smtp_enable'] eq 1">
+                            <if condition="$settings['email_enabled'] eq 1">
                                 <div class="line">
                                     <label class="linel"><span class="dt">邮箱验证码：</span></label>
                                     <div class="liner">
@@ -138,7 +150,7 @@
                                     <input type="password" class="inp fsecpass J_password2" placeholder="请再次输入密码" autocomplete="off" maxlength="16" id="password2" name="password2" required="" value=""/>
                                 </div>
                             </div>
-                            <if condition="$tpshop_config['basic_invite'] eq 1" >
+                            <if condition="$settings['basic_invite'] eq 1" >
                                 <div class="line">
                                     <label class="linel"><span class="dt">推荐人手机：</span></label>
                                     <div class="liner">
@@ -187,16 +199,16 @@
     function check_submit(){
         $.ajax({
             type : "POST",
-            url:"{:U('Home/User/reg')}",
+            url:"{:U('Home-User-checkReg')}",
             dataType: "json",
             data: $('#reg_form2').serialize(),
             success: function(data){
-                if(data.status == 1){
-                    layer.msg(data.msg, {icon: 1},function(){
+                if(data.err_code == 0){
+                    layer.msg(data.err_msg, {icon: 1},function(){
                         window.location.href = "{:U('Home/Index/index')}";
                     });
                 }else{
-                    layer.alert(data.msg, {icon: 2},function(index){
+                    layer.alert(data.err_msg, {icon: 2},function(index){
                         $('.verifyImg').trigger('click');
                         layer.close(index);
                     });
@@ -216,6 +228,11 @@
     function send_sms_reg_code(){
         var mobile = $('input[name="username"]').val();
         var verify_code = $('input[name="verify_code"]').val();
+        var membername = $('input[name="membername"]').val();
+        if(membername == ''){
+            layer.alert('请输入会员名', {icon: 2});//alert('请输入正确的手机号码');
+            return;
+        }
         if(!checkMobile(mobile)){
             layer.alert('请输入正确的手机号码', {icon: 2});//alert('请输入正确的手机号码');
             return;
@@ -228,6 +245,7 @@
         var data = {};
         data.type = 1;
         data.username = mobile;
+        data.membername = membername;
         data.verify_code = verify_code;
         $.ajax({
             url:url,
@@ -238,7 +256,7 @@
                 if(res.err_code == 0)
                 {
                     $('#count_down').attr("disabled","disabled");
-                    intAs = {$tpshop_config['sms_sms_time_out']}; // 手机短信超时时间
+                    intAs = {$settings['sms_time_out']}; // 手机短信超时时间
                     jsInnerTimeout('count_down',intAs);
                     layer.alert(res.err_msg, {icon: 1});
                 }else{
@@ -253,6 +271,11 @@
     function send_smtp_reg_code(){
         var email = $('input[name="username"]').val();
         var verify_code = $('input[name="verify_code"]').val();
+        var membername = $('input[name="membername"]').val();
+        if(membername == ''){
+            layer.alert('请输入会员名', {icon: 2});//alert('请输入正确的手机号码');
+            return;
+        }
         if(!checkEmail(email)){
             layer.alert('请输入正确的邮箱', {icon: 2});//alert('请输入正确的手机号码');
             return;

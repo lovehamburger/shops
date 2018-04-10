@@ -163,9 +163,6 @@ function _Send_SMS($smsObject)
  * @return json
  */
 function Send_SMS($scene, $recNum, $templateCode, $smsParam){
-    echo'<pre>';
-    print_r($smsParam);
-    echo'</pre>';
     $msgLog = array();
     //参数判断
     if($scene == ''){
@@ -232,10 +229,8 @@ function Send_SMS($scene, $recNum, $templateCode, $smsParam){
     $request->setOutId("1234");//照填就行了
     //发起访问请求
     try {
-        $acsResponse = $acsClient->getAcsResponse($request);
-        echo'<pre>'; 
-            print_r($acsResponse);
-        echo'</pre>';
+        $status = 1;
+        $acsResponse = $acsClient->getAcsResponse($request); 
     } catch (\Exception $e) {
         $status = -1;
         $mag = $e->getMessage();
@@ -249,7 +244,7 @@ function Send_SMS($scene, $recNum, $templateCode, $smsParam){
     $data['msg'] = $recNum;
     $data['scene'] = $scene;
     $data['error_msg'] =$mag;
-    M(sms_log)->add($data);
+    M('sms_log')->add($data);
     return $data;
 }
 

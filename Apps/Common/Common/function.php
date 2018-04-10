@@ -2,7 +2,7 @@
 
 
 function _NOW_TIME(){
-    return date('Y-m-d :H:i:s');
+    return date('Y-m-d H:i:s');
 }
 /**
 * 错误码封装
@@ -101,7 +101,7 @@ function makeVerifyCode($sessKey, $phoneNbr, $smsTemplate, $sessMin = 2){
     //生成验证码
     $code = validationCode();
     //发送短信
-    $res = Send_SMS("1", $phoneNbr, $smsTemplate, sprintf("{\"code\":\"%s\"}", $code, '好加快'));
+    $res = Send_SMS("1", $phoneNbr, $smsTemplate, sprintf("{\"code\":\"%s\"}", $code, C('THINK_SMS.APPSIGNNAME')));
     //写入session
     if($res['status'] != -1){
         $verifyCode = array(
@@ -114,6 +114,32 @@ function makeVerifyCode($sessKey, $phoneNbr, $smsTemplate, $sessMin = 2){
     }
 
     return array_err(301, '获取短信验证码失败');
+}
+
+function _checkVerifyCode($sessKey, $phoneNbr, $inputCode, $expMin = 2){
+    $verifyCode = session($sessKey);
+    if(empty($verifyCode) || empty($verifyCode['phone'])
+        || empty($verifyCode['time']) || empty($verifyCode['code']) ){
+        return array_err(300, '短信验证码不存在');
+    }
+
+    //判断当前时间与上次session的时间差是否超过了 指定的分钟数
+    if(strtotime('+'.$expMin.' min', strtotime($verifyCode['time'])) < time()){
+        session($sessKey,null);
+        return array_err(301, '短信验证码已超时');
+    }
+
+    if($phoneNbr != $verifyCode['phone']){
+        return array_err(302, '手机号码校验失败');
+    }
+
+    if($inputCode != $verifyCode['code']){ // 添加万能验证码
+        return array_err(303, '短信验证码错误');
+    }
+
+    //校验通过删除验证码
+    session($sessKey, null);
+    return array_err(0, '校验通过');
 }
 
 /**
@@ -142,7 +168,7 @@ function validationCode($iNum = 6)
  * @param unknown $p_iShop
  * @param unknown $p_iUserID
  */
-function randPswSalter()
+function _randPswSalter()
 {
     $str = "j8f4kOMsKJqXSe2cnzHvAFWmDaVCZ0BQEpw69Ty5RtIUhGbrLxg1PodYu73iNl";
 

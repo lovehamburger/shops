@@ -43,9 +43,9 @@ return array(
     //用户名
     'DB_PWD'=>'root',
     //密码
-    'DB_PREFIX'=>'tp_',
+    'DB_PREFIX'=>'shopnc_',
     //数据库表前缀
-    'DB_DSN'=>'mysql:host=localhost;dbname=tpshop;charset=UTF8',
+    'DB_DSN'=>'mysql:host=localhost;dbname=shop;charset=UTF8',
 
     //'配置项'=>'配置值'
     'LOAD_EXT_FILE'         => 'functions,head,sendmsg,encrypt,redis,arraydeal,business,map,apiCall,files',

@@ -10,21 +10,36 @@ class BaseController extends Controller {
  	    $this->getConfig();//获取配置信息数据
 	 }
 
-    /**
-     * 获取配置信息数据
-     */
-    public function getConfig(){
-        if(empty(S('tp_config'))){
-            $tpshop_config = M('config')->cache(tp_config)->select();
-            if(!empty($tpshop_config)){
-                foreach ($tpshop_config as $key => $value) {
-                    $tConfig[$value['inc_type'].'_'.$value['name']] = $value['value'];
+    // /**
+    //  * 获取配置信息数据
+    //  */
+    // public function getConfig(){
+    //     if(empty(S('tp_config'))){
+    //         $tpshop_config = M('config')->cache(tp_config)->select();
+    //         if(!empty($tpshop_config)){
+    //             foreach ($tpshop_config as $key => $value) {
+    //                 $tConfig[$value['inc_type'].'_'.$value['name']] = $value['value'];
+    //             }
+    //         }
+    //         S('tp_config',$tConfig);
+    //     }
+    //     $tConfig = S('tp_config');
+    //     $this->assign('tpshop_config',$tConfig);
+    //}
+
+
+     public function getConfig(){
+        if(empty(S('setting'))){
+            $setting = M('setting')->select(); 
+            if(!empty($setting)){
+                foreach ($setting as $key => $value) {
+                    $settings[$value['name']] = $value['value'];
                 }
-            }
-            S('tp_config',$tConfig);
+            }    
+            S('setting',$settings);
         }
-        $tConfig = S('tp_config');
-        $this->assign('tpshop_config',$tConfig);
+        $settings = S('setting');
+        $this->assign('settings',$settings);
     }
 
     /**
